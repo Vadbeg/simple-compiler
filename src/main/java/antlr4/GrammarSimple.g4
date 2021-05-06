@@ -27,19 +27,19 @@ elseProc            : 'else' bodyProc;
 forProc             : 'for' conditionFor bodyProc;
 
 condition           : (ID | Number | Digit) CompareOperator (ID | Number | Digit) ((And | Or)condition)?;
-conditionFor        : OpenBracket type ID Assign (Number | Digit | ID) EndOfLine condition EndOfLine (math | operation) CloseBracket;
+conditionFor        : OpenBracket ID Assign (Number | Digit | ID) EndOfLine condition EndOfLine (math | operation) CloseBracket;
 
 
 math                : (summOperation | diffOperation | multOperation | divOperation | diffOperation | inPowOperation | ass | callProcedure);
 operation           : summ | diff | mult | div | inPow | inSqrt | callFunction;
 
-ass                 : type? ID Assign (OpenBracket type CloseBracket)?(ID | Number | Digit | operation);
+ass                 : ID Assign (OpenBracket type CloseBracket)?(ID | Number | Digit | operation);
 
-summOperation       : (type? ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Plus (ID | Number | Digit | operation) | type? ID PlusAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation));
-diffOperation       : type? ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Minus (ID | Number | Digit | operation) | type? ID MinusAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation);
-multOperation       : type? ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Star (ID | Number | Digit | operation) | type? ID StarAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation);
-divOperation        : type? ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Devide (ID | Number | Digit | operation) | type? ID DevideAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation);
-inPowOperation      : type? ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Pow (ID | Number | Digit | operation) ;
+summOperation       : (ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Plus (ID | Number | Digit | operation) | ID PlusAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation));
+diffOperation       : ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Minus (ID | Number | Digit | operation) | ID MinusAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation);
+multOperation       : ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Star (ID | Number | Digit | operation) | ID StarAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation);
+divOperation        : ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Devide (ID | Number | Digit | operation) | ID DevideAss (OpenBracket type CloseBracket)? (ID | Number | Digit | operation);
+inPowOperation      : ID Assign (OpenBracket type CloseBracket)? (ID | Number | Digit | operation) Pow (ID | Number | Digit | operation) ;
 
 
 summ                : OpenBracket (ID | Number | Digit | operation) Plus (ID | Number | Digit | operation) CloseBracket;
@@ -47,7 +47,7 @@ diff                : OpenBracket (ID | Number | Digit | operation) Minus (ID | 
 mult                : OpenBracket (ID | Number | Digit | operation) Star (ID | Number | Digit | operation) CloseBracket;
 div                 : OpenBracket (ID | Number | Digit | operation) Devide (ID | Number | Digit | operation) CloseBracket;
 inPow               : OpenBracket (ID | Number | Digit | operation) Pow (ID | Number | Digit | operation) CloseBracket;
-inSqrt              : type? ID Assign (OpenBracket type CloseBracket)? Sqrt (ID | Number | Digit | operation);
+inSqrt              : ID Assign (OpenBracket type CloseBracket)? Sqrt (ID | Number | Digit | operation);
 
 
 
