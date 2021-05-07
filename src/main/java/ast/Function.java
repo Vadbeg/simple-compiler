@@ -1,3 +1,7 @@
+/*
+Module with handling of function
+ */
+
 package ast;
 
 import java.util.ArrayList;

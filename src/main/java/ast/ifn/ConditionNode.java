@@ -1,3 +1,9 @@
+/*
+Module for handling conditions
+
+ex.: (a > b)
+ */
+
 package ast.ifn;
 
 import ast.Function;
@@ -45,6 +51,7 @@ public class ConditionNode extends Node {
         if (condition.contains("!=")) {
             return "!=";
         }
+
         return "";
     }
 }

@@ -1,3 +1,15 @@
+/*
+Module for if else clause
+
+ex.:
+    for (i = 0; i < 15; i+=2)
+    start
+        ...
+    finish
+
+ */
+
+
 package ast;
 
 import ast.ifn.ConditionNode;
@@ -47,8 +59,6 @@ public class ForNode extends Node {
                 node.getNodes().add(new Node());
                 oldNode = node;
                 node = node.getNodes().get(node.getNodes().size() - 1);
-//                pointerNode.getNodes().add(new Node(token));
-//                pointerNode = getNodes().get(nodes.size() - 1);
                 builder = new StringBuilder();
             } else {
                 builder.append(token);
@@ -62,7 +72,7 @@ public class ForNode extends Node {
             nodes.remove(oldNode);
             nodes.add(new ConditionNode(builder.toString(), variables, functions));
         }
-//        pointerNode.getNodes().add(new Node(builder.toString()));
+
         this.pointer = pointer;
     }
 }

@@ -1,3 +1,7 @@
+/*
+Module with Variable node.
+ */
+
 package ast;
 
 public class Variable {

@@ -19,14 +19,15 @@ public class Main {
         GrammarSimpleParser parser = new GrammarSimpleParser(tokenStream);
         parser.program();
 
-        System.out.println(parser.getTokenStream().get(4));
         try {
             Node ast = new Node(tokenStream);
-            System.out.println("The End");
+            System.out.println("Finished tokenizing");
+
             Translator translator = new Translator(ast);
-            translator.translate();
+            translator.saveTranslation();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            throw e;
         }
     }
 }

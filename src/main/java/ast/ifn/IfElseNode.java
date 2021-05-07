@@ -1,3 +1,19 @@
+/*
+Module for if else clause
+
+ex.:
+	if(index > 10)
+    then
+        start
+            ...
+        finish
+    else
+        start
+            ...
+        finish
+
+ */
+
 package ast.ifn;
 
 import ast.Function;
@@ -8,30 +24,18 @@ import org.antlr.v4.runtime.TokenStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-if(counter > 10 Or counter == -1)
-        then
-        start
-        print(1);
-        finish
-        else
-        start
-        print(10);
-        return;
-        finish
-*/
 
-public class IfNode extends Node {
-    public IfNode(TokenStream tokens, int pointer, List<Variable> variables, List<Function> functions) throws Exception {
+
+public class IfElseNode extends Node {
+    public IfElseNode(TokenStream tokens, int pointer, List<Variable> variables, List<Function> functions) throws Exception {
         typeNode = "operation";
         name = "if";
         nodes = new ArrayList<>();
         setConditions(tokens, pointer + 2, variables, functions);
-//        pointer = nodes.get(nodes.size() - 1).getPointer();
-//        then
+
         nodes.add(new Node(tokens, this.pointer + 2, variables, functions));
         nodes.get(nodes.size() - 1).setTypeNode("bodyFunc");
-//         else
+
         this.pointer = nodes.get(nodes.size() -1).getPointer();
         if ("else".equals(tokens.get(++this.pointer).getText())){
             nodes.add(new Node(tokens, ++this.pointer, variables, functions));
@@ -56,8 +60,6 @@ public class IfNode extends Node {
                 node.getNodes().add(new Node());
                 oldNode = node;
                 node = node.getNodes().get(node.getNodes().size() - 1);
-//                pointerNode.getNodes().add(new Node(token));
-//                pointerNode = getNodes().get(nodes.size() - 1);
                 builder = new StringBuilder();
             } else {
                 builder.append(token);
@@ -71,7 +73,6 @@ public class IfNode extends Node {
             nodes.remove(0);
             nodes.add(new ConditionNode(builder.toString(), variables, functions));
         }
-//        pointerNode.getNodes().add(new Node(builder.toString()));
         this.pointer = pointer;
     }
 }

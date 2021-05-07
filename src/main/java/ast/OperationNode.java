@@ -1,3 +1,11 @@
+/*
+Module with function node
+
+ex.:
+    a + v
+
+ */
+
 package ast;
 
 import java.util.*;
@@ -96,7 +104,7 @@ public class OperationNode extends Node {
                 }
             }
             if (Objects.isNull(resultFunction)) {
-                throw new Exception("Воу, полегче, такой функции нету, вызови чо-нибудь другое, плз(");
+                throw new Exception("No function!");
             }
             if (!"Done".equals(result)) {
                 throw new Exception(result);
@@ -122,7 +130,6 @@ public class OperationNode extends Node {
         return expression.substring(matcher.start(), matcher.end());
     }
 
-//    ((((b^2) - 4) * a) * c);
 
     private int searchOperation(String expression) {
         int check = 0;
@@ -157,22 +164,22 @@ public class OperationNode extends Node {
     private String checkParam(Function function, List<Variable> variables) {
         if (nodes.size() != function.getParams().size()) {
             if (nodes.size() > function.getParams().size()) {
-                return "Шибко много переменных пихаешь в вызов метода, дружок!!! 🥵";
+                return "More vars in functions " + function.getName();
             }
-            return "Шибко мало переменных пихаешь в вызов метода, дружок!!! 🥶";
+            return "Less vars in functions " + function.getName();
         }
         for (int i = 0; i < nodes.size(); i++) {
             if (Objects.isNull(function.getParams().get(i))) {
-                return ("Шибко много переменных пихаешь в вызов метода, дружок!!! 🥵");
+                return ("Less vars in functions " + function.getName());
             }
             if ("literal".equals(nodes.get(i).typeNode)) {
                 if ("int".equals(function.getParams().get(i).getType())) {
                     if (!isInteger(nodes.get(i).name)) {
-                        return ("Тип переменной чо-то не такой!🥺");
+                        return ("Bad var type " + nodes.get(i).name);
                     }
                 } else {
                     if (isInteger(nodes.get(i).name)) {
-                        return ("Тип переменной чо-то не такой!🥺");
+                        return ("Bad var type " + nodes.get(i).name);
                     }
                 }
             } else {
@@ -181,7 +188,7 @@ public class OperationNode extends Node {
                         continue;
                     }
                     if (!variable.getType().equals(function.getParams().get(i).getType())) {
-                        return ("Тип переменной чо-то не такой!-.-");
+                        return ("Bad var type " + function.getParams().get(i).getType());
                     } else {
                         break;
                     }

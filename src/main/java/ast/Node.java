@@ -1,6 +1,10 @@
+/*
+Module parse input tokens and builds AST
+ */
+
 package ast;
 
-import ast.ifn.IfNode;
+import ast.ifn.IfElseNode;
 import org.antlr.v4.runtime.TokenStream;
 
 import java.util.ArrayList;
@@ -41,7 +45,7 @@ public class Node {
         }
         unusableVariables = unusableVariables.stream().distinct().collect(Collectors.toList());
         checkUniquenessFunc(functions);
-        System.out.println("Ммммммм🤤, вкусный👅,красивый🥰, 🌟а главное🌟, ПРАВИЛЬНЫЙ код 🤓");
+        System.out.println("Code was processed.");
         unUseV();
         unUseF();
     }
@@ -51,9 +55,9 @@ public class Node {
             return;
         }
         if (Node.unusableVariables.size() == 1) {
-            System.out.printf("А чего ты не используешь эту переменную: %s?🤐%n", unusableVariables.get(0));
+            System.out.printf("Unused variable: %s\n", unusableVariables.get(0));
         } else {
-            System.out.printf("А чего ты не используешь эти переменные: %s?🤐%n", unusableVariables);
+            System.out.printf("Unused variables: %s\n", unusableVariables);
         }
     }
 
@@ -62,9 +66,9 @@ public class Node {
             return;
         }
         if (Node.unusableFunctions.size() == 1) {
-            System.out.printf("А чего ты не используешь эту функцию: %s?🤐%n", unusableFunctions.get(0));
+            System.out.printf("Unused function: %s\n", unusableFunctions.get(0));
         } else {
-            System.out.printf("А чего ты не используешь эти функции: %s?🤐%n", unusableFunctions);
+            System.out.printf("Unused functions: %s\n", unusableFunctions);
         }
     }
 
@@ -91,7 +95,7 @@ public class Node {
                     continue;
                 }
                 if (check) {
-                    throw new Exception("Эээээ, функция с таким именем и такими параметрами уже есть, подумай ещё 🤔");
+                    throw new Exception("Same functions in code");
                 }
             }
         }
@@ -112,7 +116,7 @@ public class Node {
         while (!"finish".equals(tokens.get(pointer).getText())) {
             switch (token) {
                 case "if": {
-                    nodes.add(new IfNode(tokens, pointer, variables, functions));
+                    nodes.add(new IfElseNode(tokens, pointer, variables, functions));
                     pointer = nodes.get(nodes.size() - 1).getPointer();
                     break;
                 }

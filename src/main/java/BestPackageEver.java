@@ -1,9 +1,18 @@
 public class BestPackageEver{
 	private static double function(int a,double b,double c){
 		int first = 0;
+		int i = 0;
 		first = (7 + 5);
-		first += 3;
+		for(i = 0; i < 15; i += 2){
+			first += 3;
+		}
 		return (a + (b + c));
+	}
+	private static int isValid(double b){
+		if (b > 10.0) {
+			return 1;
+		}
+		return 0;
 	}
 	private static double testIf(int index){
 		if (index > 10) {
@@ -20,13 +29,14 @@ public class BestPackageEver{
 	public static void main(String[] args){
 		double a = 0;
 		int i = 0;
-		int r = 0;
+		double res = 0;
+		int isResValid = 0;
 		a = 5.4;
 		for(i = 0; i < 10; i += 1){
-			r = 10;
-			System.out.println(r);
-			testIf(i);
-			System.out.println(i);
+			res = testIf(i);
+			System.out.println(res);
+			isResValid = isValid(6.0);
+			System.out.println(isResValid);
 		}
 	}
 

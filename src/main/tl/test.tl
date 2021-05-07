@@ -3,9 +3,24 @@ package BestPackageEver;
 float function(int a, float b, float c)
 start
     first = 7 + 5;
-    first += 3;
+
+    for (i = 0; i < 15; i+=2)
+    start
+        first += 3;
+    finish
 
 	return (a + (b + c));
+finish
+
+int isValid(float b)
+start
+	if(b > 10.0)
+    then
+        start
+            return 1;
+        finish
+
+   return 0;
 finish
 
 float testIf(int index)
@@ -32,12 +47,11 @@ main
         a = 5.4;
         for (i = 0; i < 10; i+=1)
         start
-            r = 10;
-            print(r);
+            res = testIf(i);
+            print(res);
 
-            testIf(i);
-
-            print(i);
+            isResValid = isValid(6.0);
+            print(isResValid);
 
         finish
     finish

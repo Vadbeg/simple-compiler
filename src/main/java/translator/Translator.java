@@ -244,7 +244,10 @@ public class Translator {
         createIfCondition(node.getNodes().get(0));
         fileClass.append(") ");
         createBody(node.getNodes().get(1), tab + "\t", variables);
-        if (Objects.nonNull(node.getNodes().get(2))) {
+
+        System.out.println(node.getNodes());
+
+        if ((node.getNodes().size() > 2) && (Objects.nonNull(node.getNodes().get(2)))) {
             fileClass.append(tab).append("else ");
             createBody(node.getNodes().get(2), tab + "\t", variables);
         }
@@ -266,11 +269,11 @@ public class Translator {
         fileClass.append(")");
     }
 
-    public void printFile() {
+    public void printTranslation() {
         System.out.println(fileClass.toString());
     }
 
-    public void translate() {
+    public void saveTranslation() {
         try (FileWriter writer = new FileWriter(String.format("%s/%s.java", path, ast.getName()))) {
             writer.write(fileClass.toString());
         } catch (IOException e) {

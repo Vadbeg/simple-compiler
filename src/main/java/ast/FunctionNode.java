@@ -1,3 +1,14 @@
+/*
+Module with function node
+
+ex.:
+    float function(int a, float b, float c)
+    start
+        ...
+    finish
+
+ */
+
 package ast;
 
 import org.antlr.v4.runtime.TokenStream;
@@ -13,7 +24,7 @@ public class FunctionNode extends Node {
         if ("main".equals(tokens.get(pointer).getText())){
             name = "main";
             typeNode = "function";
-            type = "procedura";
+            type = "procedure";
             this.pointer = pointer + 1;
             nodes.add(new Node(tokens, this.pointer, variables, functions));
             this.pointer = nodes.get(nodes.size() - 1).getPointer();
@@ -38,7 +49,7 @@ public class FunctionNode extends Node {
         }
         this.pointer = pointer + 1;
         nodes.add(new Node(tokens, this.pointer, variables, functions));
-        nodes.get(nodes.size() - 1).setTypeNode("body");
+        nodes.get(nodes.size() - 1).setTypeNode("bodyFunc");
         this.pointer = nodes.get(nodes.size() - 1).getPointer();
     }
 }
